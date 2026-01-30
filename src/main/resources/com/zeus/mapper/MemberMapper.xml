@@ -44,9 +44,9 @@
 		<selectKey keyProperty="no" resultType="int" order="BEFORE">
 			SELECT MYBATISMEMBER_SEQ.NEXTVAL FROM DUAL
 		</selectKey>
-		INSERT INTO MYBATISMEMBER(NO, ID, PW, NAME) VALUES (#{no},#{id},#{PW},#{name})
+		INSERT INTO MYBATISMEMBER(NO, ID, PW, NAME) VALUES (#{no},#{id},#{pw},#{name})
 	</insert>
 	<insert id="createAuth">
-		INSERT INTO MYBATISMEMBERAUTH (NO,AUTH) VALUES (#{no},#{AUTH})
+		INSERT INTO MYBATISMEMBERAUTH (NO,AUTH) VALUES (#{no},#{auth})
 	</insert>
 </mapper>

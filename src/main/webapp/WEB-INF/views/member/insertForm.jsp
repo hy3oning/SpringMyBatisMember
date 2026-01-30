@@ -65,10 +65,6 @@ button {
 				<label for="name">이름</label> <input type="text" id="name"
 					name="name" placeholder="이름을 입력하세요" required>
 			</div>
-			<div class="form-group">
-				<label for="coin">등록코인</label> <input type="number" id="coin"
-					name="coin" placeholder="숫자만 입력하세요">
-			</div>
 
 			<div class="btn-area">
 				<button type="submit">등록하기</button>

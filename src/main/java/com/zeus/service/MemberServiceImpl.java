@@ -40,7 +40,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	@Transactional
-	public int delete(int userNo) throws Exception {
+	public int delete(Member member) throws Exception {
 		return 0;
 	}
 
@@ -50,8 +50,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public Member read(int userNo) throws Exception {
-		return null;
+	public Member read(Member member) throws Exception {
+		return mapper.read(member);
 	}
 
 }
