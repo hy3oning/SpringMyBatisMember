@@ -29,6 +29,27 @@
 	<select id="list" resultType="Member">
 		SELECT NO,ID,PW,NAME,REGDATE FROM MYBATISMEMBER WHERE ENABLED = '1' ORDER BY REGDATE DESC
 	</select>
+	<select id="search" resultType="Member">
+		SELECT * FROM mybatisMember
+		<where>
+			<if test="keyword != null and keyword != ''">
+				<choose>
+					<when test="searchType == 'id'">
+						AND ID LIKE '%' || #{keyword} || '%'
+					</when>
+					<when test="searchType == 'name'">
+						AND NAME LIKE '%' || #{keyword} || '%'
+					</when>
+					<otherwise>
+						AND (ID LIKE '%' || #{keyword} || '%'
+						OR NAME LIKE
+						'%' || #{keyword} || '%')
+					</otherwise>
+				</choose>
+			</if>
+		</where>
+		AND ENABLED = '1' ORDER BY no DESC
+	</select>
 	<update id="update">
 		UPDATE MYBATISMEMBER SET id =#{id} , pw =#{pw} WHERE no = #{no} AND enabled = '1'
 	</update>
