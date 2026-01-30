@@ -30,10 +30,10 @@
 		SELECT NO,ID,PW,NAME,REGDATE FROM MYBATISMEMBER ORDER BY REGDATE DESC
 	</select>
 	<update id="update">
-		UPDATE MYBATISMEMBER SET name =#{name} WHERE no = #{no}
+		UPDATE MYBATISMEMBER SET id =#{id} , pw =#{pw} WHERE no = #{no}
 	</update>
 	<delete id="delete">
-		DELETE FROM MYBATISMEMBER WHERE no = #{no}
+		DELETE FROM MYBATISMEMBER WHERE no = #{no} 
 	</delete>
 	<delete id="deleteAuth">
 		DELETE FROM MYBATISMEMBERAUTH WHERE no = #{no}
