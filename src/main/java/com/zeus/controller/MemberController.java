@@ -1,5 +1,7 @@
 package com.zeus.controller;
 
+import java.util.List;
+
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,35 +43,35 @@ public class MemberController {
 		model.addAttribute("message", "%s님 등록 실패.".formatted(member.getName()));
 		return "member/failed";
 	}
-//
-//	@GetMapping("/boardList")
-//	public String boardList(Model model) {
-//		log.info("boardList");
-//		try {
-//			List<Board> boardList = boardService.list();
-//			model.addAttribute("boardList", boardList);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		return "board/boardList";
-//	}
-//
-//	@GetMapping("/detail")
-//	public String boardDetail(Board b, Model model) {
-//		log.info("boardDetail board =" + b.toString());
-//		try {
-//			Board board = boardService.read(b);
-//			if (board == null) {
-//				model.addAttribute("message", "%s 님의 정보가 없습니다.".formatted(board.getWriter()));
-//				return "board/failed";
-//			}
-//			model.addAttribute("board", board);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		return "board/detail";
-//	}
-//
+
+	@GetMapping("/memberList")
+	public String memberList(Model model) {
+		log.info("memberList");
+		try {
+			List<Member> memberList = memberService.list();
+			model.addAttribute("memberList", memberList);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "member/memberList";
+	}
+
+	@GetMapping("/detail")
+	public String memberDetail(Member member, Model model) {
+		log.info("Detail =" + member.toString());
+		try {
+			Member _member = memberService.read(member);
+			if (_member == null) {
+				model.addAttribute("message", "%s 님의 정보가 없습니다.".formatted(member.getNo()));
+				return "member/failed";
+			}
+			model.addAttribute("member", member);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "member/detail";
+	}
+
 //	@GetMapping("/delete")
 //	public String boardDelete(Board board, Model model) {
 //		log.info("boardDelete board =" + board.toString());
