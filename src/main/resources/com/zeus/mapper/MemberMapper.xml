@@ -24,10 +24,12 @@
 		FROM MYBATISMEMBER m
 		INNER JOIN MYBATISMEMBERAUTH a ON
 		m.no = a.no
-		WHERE m.no = #{no} AND m.enabled = '1'
+		WHERE m.no = #{no} AND
+		m.enabled = '1'
 	</select>
 	<select id="list" resultType="Member">
-		SELECT NO,ID,PW,NAME,REGDATE FROM MYBATISMEMBER WHERE ENABLED = '1' ORDER BY REGDATE DESC
+		SELECT NO,ID,PW,NAME,REGDATE FROM
+		MYBATISMEMBER WHERE ENABLED = '1' ORDER BY REGDATE DESC
 	</select>
 	<select id="search" resultType="Member">
 		SELECT * FROM mybatisMember
@@ -43,7 +45,8 @@
 					<otherwise>
 						AND (ID LIKE '%' || #{keyword} || '%'
 						OR NAME LIKE
-						'%' || #{keyword} || '%')
+						'%' ||
+						#{keyword} || '%')
 					</otherwise>
 				</choose>
 			</if>
@@ -51,23 +54,34 @@
 		AND ENABLED = '1' ORDER BY no DESC
 	</select>
 	<update id="update">
-		UPDATE MYBATISMEMBER SET id =#{id} , pw =#{pw} WHERE no = #{no} AND enabled = '1'
+		UPDATE MYBATISMEMBER
+		<set>
+			id = #{id}
+			<if test="pw != null and pw != ''">
+				, pw = #{pw}
+			</if>
+		</set>
+		WHERE no = #{no} AND enabled = '1'
 	</update>
 	<delete id="delete">
-		UPDATE MYBATISMEMBER SET ENABLED = '0' WHERE NO = #{no}
+		UPDATE MYBATISMEMBER SET ENABLED = '0' WHERE NO =
+		#{no}
 	</delete>
 	<delete id="deleteAuth">
-		 DELETE FROM MYBATISMEMBERAUTH WHERE NO = #{no}
+		DELETE FROM MYBATISMEMBERAUTH WHERE NO = #{no}
 	</delete>
 	<!-- 데이터베이스에서 기본키를 인수로 전달한 자바빈의 프로퍼티를 통해 취득한다. -->
 	<!-- <insert id="create" useGeneratedKeys="true" keyProperty="userNo"> -->
 	<insert id="create" parameterType="Member">
 		<selectKey keyProperty="no" resultType="int" order="BEFORE">
-			SELECT MYBATISMEMBER_SEQ.NEXTVAL FROM DUAL
+			SELECT
+			MYBATISMEMBER_SEQ.NEXTVAL FROM DUAL
 		</selectKey>
-		INSERT INTO MYBATISMEMBER(NO, ID, PW, NAME) VALUES (#{no},#{id},#{pw},#{name})
+		INSERT INTO MYBATISMEMBER(NO, ID, PW, NAME) VALUES
+		(#{no},#{id},#{pw},#{name})
 	</insert>
 	<insert id="createAuth">
-		INSERT INTO MYBATISMEMBERAUTH (NO,AUTH) VALUES (#{no},#{auth})
+		INSERT INTO MYBATISMEMBERAUTH (NO,AUTH) VALUES
+		(#{no},#{auth})
 	</insert>
 </mapper>

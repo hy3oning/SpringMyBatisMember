@@ -75,7 +75,7 @@ button[type="reset"] {
         <!-- 비밀번호 -->
         <div class="form-group">
             <label>PASSWORD</label>
-            <form:password path="pw" required="true"/>
+            <form:password path="pw" placeholder="변경 시에만 입력"/>
         </div>
 
         <!-- 이름 -->
