@@ -10,7 +10,8 @@ public interface MemberMapper {
 	public int create(Member member) throws Exception;
 
 	public int createAuth(MemberAuth memberAuth) throws Exception;
-
+	
+	//회원리스트, 회원정보, 회원수정, 회원삭제, 권한삭제
 	public List<Member> list() throws Exception;
 
 	public Member read(Member member) throws Exception;
