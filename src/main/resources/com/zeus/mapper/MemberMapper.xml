@@ -24,19 +24,19 @@
 		FROM MYBATISMEMBER m
 		INNER JOIN MYBATISMEMBERAUTH a ON
 		m.no = a.no
-		WHERE m.no = #{no}
+		WHERE m.no = #{no} AND m.enabled = '1'
 	</select>
 	<select id="list" resultType="Member">
-		SELECT NO,ID,PW,NAME,REGDATE FROM MYBATISMEMBER ORDER BY REGDATE DESC
+		SELECT NO,ID,PW,NAME,REGDATE FROM MYBATISMEMBER WHERE ENABLED = '1' ORDER BY REGDATE DESC
 	</select>
 	<update id="update">
-		UPDATE MYBATISMEMBER SET id =#{id} , pw =#{pw} WHERE no = #{no}
+		UPDATE MYBATISMEMBER SET id =#{id} , pw =#{pw} WHERE no = #{no} AND enabled = '1'
 	</update>
 	<delete id="delete">
-		DELETE FROM MYBATISMEMBER WHERE no = #{no} 
+		UPDATE MYBATISMEMBER SET ENABLED = '0' WHERE NO = #{no}
 	</delete>
 	<delete id="deleteAuth">
-		DELETE FROM MYBATISMEMBERAUTH WHERE no = #{no}
+		 DELETE FROM MYBATISMEMBERAUTH WHERE NO = #{no}
 	</delete>
 	<!-- 데이터베이스에서 기본키를 인수로 전달한 자바빈의 프로퍼티를 통해 취득한다. -->
 	<!-- <insert id="create" useGeneratedKeys="true" keyProperty="userNo"> -->
